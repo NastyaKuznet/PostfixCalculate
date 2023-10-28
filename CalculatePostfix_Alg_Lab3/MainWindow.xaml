@@ -1,0 +1,90 @@
+﻿<Window x:Class="CalculatePostfix_Alg_Lab3.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CalculatePostfix_Alg_Lab3.ViewModel"
+        mc:Ignorable="d"
+        Title="CalculatePostfix" Height="450" Width="400" Background="#1c324f">
+    <Window.Resources>
+        <Style x:Key="Number" TargetType="Button">
+            <Setter Property="Background" Value="#467db5"/>
+            <Setter Property="Foreground" Value="#a1cced"/>
+            <Setter Property="BorderBrush" Value="#152837"/>
+            <Setter Property="BorderThickness" Value="2"/>
+        </Style>
+        <Style x:Key="Func" TargetType="Button">
+            <Setter Property="Background"  Value="#244c7b"/>
+            <Setter Property="Foreground" Value="#a1cced"/>
+            <Setter Property="BorderBrush" Value="#152837"/>
+            <Setter Property="BorderThickness" Value="2"/>
+        </Style>
+        <Style x:Key="Action" TargetType="Button">
+            <Setter Property="Background"  Value="#344b5b"/>
+            <Setter Property="Foreground" Value="#A3B6C2"/>
+            <Setter Property="BorderBrush" Value="#152837"/>
+            <Setter Property="BorderThickness" Value="2"/>
+        </Style>
+    </Window.Resources>
+    <Window.DataContext>
+        <local:MainViewModel/>
+    </Window.DataContext>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1.5*"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBlock Margin="3" Foreground="#a1cced" Text="Инфиксная запись"/>
+            <TextBlock Grid.Row="1" Margin="3" Foreground="#D0E0F1" Text="{Binding InfixExpression}"/>
+        </Grid>
+        <Grid Grid.Column="3" Grid.ColumnSpan="2" Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBlock Margin="3" Foreground="#a1cced" Text="Постфиксная запись"/>
+            <TextBlock Grid.Row="1" Foreground="#D0E0F1" Text="{Binding PostfixExpression}"/>
+        </Grid>
+        <Button Grid.Column="0" Grid.Row="1" Margin="3" Content="7" Command="{Binding Input}" CommandParameter="7" Style="{StaticResource Number}"/>
+        <Button Grid.Column="1" Grid.Row="1" Margin="3" Content="8" Command="{Binding Input}" CommandParameter="8" Style="{StaticResource Number}"/>
+        <Button Grid.Column="2" Grid.Row="1" Margin="3" Content="9" Command="{Binding Input}" CommandParameter="9" Style="{StaticResource Number}"/>
+        <Button Grid.Column="3" Grid.Row="1" Margin="3" Content="+" Command="{Binding Input}" CommandParameter="+" Style="{StaticResource Func}"/>
+        <Button Grid.Column="4" Grid.Row="1" Margin="3" Content="^" Command="{Binding Input}" CommandParameter="^" Style="{StaticResource Func}"/>
+        <Button Grid.Column="5" Grid.Row="1" Margin="3" Content="sin" Command="{Binding Input}" CommandParameter="sin" Style="{StaticResource Func}"/>
+        <Button Grid.Column="0" Grid.Row="2" Margin="3" Content="4" Command="{Binding Input}" CommandParameter="4" Style="{StaticResource Number}"/>
+        <Button Grid.Column="1" Grid.Row="2" Margin="3" Content="5" Command="{Binding Input}" CommandParameter="5" Style="{StaticResource Number}"/>
+        <Button Grid.Column="2" Grid.Row="2" Margin="3" Content="6" Command="{Binding Input}" CommandParameter="6" Style="{StaticResource Number}"/>
+        <Button Grid.Column="3" Grid.Row="2" Margin="3" Content="-" Command="{Binding Input}" CommandParameter="-" Style="{StaticResource Func}"/>
+        <Button Grid.Column="4" Grid.Row="2" Margin="3" Content="(" Command="{Binding Input}" CommandParameter="(" Style="{StaticResource Func}"/>
+        <Button Grid.Column="5" Grid.Row="2" Margin="3" Content="cos" Command="{Binding Input}" CommandParameter="cos" Style="{StaticResource Func}"/>
+        <Button Grid.Column="0" Grid.Row="3" Margin="3" Content="1" Command="{Binding Input}" CommandParameter="1" Style="{StaticResource Number}"/>
+        <Button Grid.Column="1" Grid.Row="3" Margin="3" Content="2" Command="{Binding Input}" CommandParameter="2" Style="{StaticResource Number}"/>
+        <Button Grid.Column="2" Grid.Row="3" Margin="3" Content="3" Command="{Binding Input}" CommandParameter="3" Style="{StaticResource Number}"/>
+        <Button Grid.Column="3" Grid.Row="3" Margin="3" Content="*" Command="{Binding Input}" CommandParameter="*" Style="{StaticResource Func}"/>
+        <Button Grid.Column="4" Grid.Row="3" Margin="3" Content=")" Command="{Binding Input}" CommandParameter=")" Style="{StaticResource Func}"/>
+        <Button Grid.Column="5" Grid.Row="3" Margin="3" Content="sqrt" Command="{Binding Input}" CommandParameter="sqrt" Style="{StaticResource Func}"/>
+        <Button Grid.Column="0" Grid.Row="4" Margin="3" Content="0" Command="{Binding Input}" CommandParameter="0" Style="{StaticResource Number}"/>
+        <Button Grid.Column="1" Grid.Row="4" Margin="3" Content="," Command="{Binding Input}" CommandParameter="," Style="{StaticResource Number}"/>
+        <Button Grid.Column="2" Grid.Row="4" Margin="3" Content="=" Command="{Binding Result}" Style="{StaticResource Action}"/>
+        <Button Grid.Column="3" Grid.Row="4" Margin="3" Content="/" Command="{Binding Input}" CommandParameter="/" Style="{StaticResource Func}"/>
+        <Button Grid.Column="4" Grid.Row="4" Margin="3" Content="ln" Command="{Binding Input}" CommandParameter="ln" Style="{StaticResource Func}"/>
+        <Button Grid.Column="5" Grid.Row="4" Margin="3" Content="Backspace" Command="{Binding Reset}" Style="{StaticResource Action}"/>
+        <Button Grid.Column="5" Grid.Row="0" Margin="3" Content="Clear" Command="{Binding Clear}" Style="{StaticResource Action}"/>
+    </Grid>
+</Window>
